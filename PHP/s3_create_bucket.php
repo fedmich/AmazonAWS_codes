@@ -9,9 +9,15 @@
 	));
 
 	$bucket = 'fed_newbucket_123';
-
-	$result = $client->createBucket(array(
-		'Bucket' => $bucket
-	));
-
-	var_dump($result);
+	
+	if( $client->doesBucketExist ( $bucket ) ){
+		//Bucket is already created before
+		echo 'Bucket is already created before';
+	}
+	else{
+		//Not yet created before, so go and create it now
+		$result = $client->createBucket(array(
+			'Bucket' => $bucket
+		));
+		var_dump($result);
+	}
